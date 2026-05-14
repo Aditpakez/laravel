@@ -1,4 +1,4 @@
-<x-layout title="Tambah Program Studi">
+<x-layout title="Edit Program Studi">
     <a href="/prodi" class="back-link">
         <i class="bi bi-arrow-left"></i> Kembali
     </a>
@@ -6,8 +6,8 @@
     <div style="max-width: 520px;">
         <div class="page-header">
             <div class="page-header-text">
-                <h1>Tambah Program Studi</h1>
-                <p>Isi informasi prodi baru</p>
+                <h1>Edit Program Studi</h1>
+                <p>Perbarui informasi prodi</p>
             </div>
         </div>
 
@@ -20,15 +20,16 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="/prodi" method="POST" enctype="multipart/form-data">
+                <form action="/prodi/{{ $prodi->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
 
                     <div class="form-group">
                         <label class="form-label">Fakultas</label>
                         <select name="fakultas_id" class="form-select {{ $errors->has('fakultas_id') ? 'is-invalid' : '' }}">
                             <option value="">Pilih fakultas</option>
                             @foreach ($fakultas as $item)
-                                <option value="{{ $item->id }}" {{ old('fakultas_id') == $item->id ? 'selected' : '' }}>
+                                <option value="{{ $item->id }}" {{ old('fakultas_id', $prodi->fakultas_id) == $item->id ? 'selected' : '' }}>
                                     {{ $item->name }}
                                 </option>
                             @endforeach
@@ -44,8 +45,7 @@
                             name="nama_prodi"
                             type="text"
                             class="form-input {{ $errors->has('nama_prodi') ? 'is-invalid' : '' }}"
-                            value="{{ old('nama_prodi') }}"
-                            placeholder="cth. Teknik Informatika">
+                            value="{{ old('nama_prodi', $prodi->nama_prodi) }}">
                         @error('nama_prodi')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
@@ -57,8 +57,7 @@
                             name="nama_kaprodi"
                             type="text"
                             class="form-input {{ $errors->has('nama_kaprodi') ? 'is-invalid' : '' }}"
-                            value="{{ old('nama_kaprodi') }}"
-                            placeholder="cth. Dr. Ahmad Fauzi">
+                            value="{{ old('nama_kaprodi', $prodi->nama_kaprodi) }}">
                         @error('nama_kaprodi')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
@@ -66,14 +65,20 @@
 
                     <div class="form-group">
                         <label class="form-label">Foto Ketua Prodi</label>
+                        @if($prodi->photo_kaprodi)
+                            <div class="photo-preview" style="margin-bottom: 10px;">
+                                <img src="{{ asset('storage/' . $prodi->photo_kaprodi) }}" alt="{{ $prodi->nama_kaprodi }}">
+                                <span>Foto saat ini</span>
+                            </div>
+                        @endif
                         <input 
                             name="photo_kaprodi"
                             type="file"
                             accept="image/*"
-                            class="form-file-input {{ $errors->has('photo_kaprodi') ? 'is-invalid' : '' }}"
+                            class="form-file-input"
                             id="photoInput"
                             onchange="previewPhoto(this)">
-                        <div class="form-hint">JPG, PNG, GIF, atau WebP. Maks 1MB.</div>
+                        <div class="form-hint">Kosongkan jika tidak ingin mengubah foto.</div>
                         @error('photo_kaprodi')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
@@ -86,7 +91,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Perbarui</button>
                         <a href="/prodi" class="btn btn-secondary">Batal</a>
                     </div>
                 </form>

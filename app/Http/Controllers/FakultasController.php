@@ -30,16 +30,16 @@ class FakultasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_fakultas' => ['required|min:3'],
-            'name_dekan' => ['required|min3']
+            'name_fakultas' => 'required|min:3',
+            'dekan' => 'required|min:3'
         ]);
+
         Fakultas::create([
             'name' => $request->name_fakultas,
             'dekan' => $request->dekan
-            ]);
+        ]);
 
-            return redirect('/fakultas')->with('success', 'data berhasil dibuat');
-            
+        return redirect('/fakultas')->with('success', 'Data fakultas berhasil ditambahkan!');
     }
 
     /**
@@ -47,18 +47,16 @@ class FakultasController extends Controller
      */
     public function show(Fakultas $fakulta)
     {
-        return view('fakultas.detail-fakultas',compact('fakulta'));
-        
-        
+        return view('fakultas.detail-fakultas', compact('fakulta'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fakultas $fakultas)
+    public function edit(Fakultas $fakulta)
     {
-        return view('fakultas.edit-fakultas',[
-            'fakultas' => $fakultas
+        return view('fakultas.edit-fakultas', [
+            'fakultas' => $fakulta
         ]);
     }
 
@@ -67,11 +65,17 @@ class FakultasController extends Controller
      */
     public function update(Request $request, Fakultas $fakulta)
     {
-        $fakulta->update([
-            'name'=>$request->name_fakultas,
-            'dekan'=>$request->dekan
+        $request->validate([
+            'name_fakultas' => 'required|min:3',
+            'dekan' => 'required|min:3'
         ]);
-        return redirect('/fakultas'); 
+
+        $fakulta->update([
+            'name' => $request->name_fakultas,
+            'dekan' => $request->dekan
+        ]);
+
+        return redirect('/fakultas')->with('success', 'Data fakultas berhasil diperbarui!');
     }
 
     /**
@@ -80,6 +84,6 @@ class FakultasController extends Controller
     public function destroy(Fakultas $fakulta)
     {
         $fakulta->delete();
-        return redirect()->back()->with('success',"data berhasil dihapus");
+        return redirect()->back()->with('success', 'Data fakultas berhasil dihapus!');
     }
 }

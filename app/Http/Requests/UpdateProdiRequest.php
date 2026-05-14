@@ -12,7 +12,7 @@ class UpdateProdiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class UpdateProdiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'fakultas_id' => 'required|exists:fakultas,id',
+            'nama_prodi' => 'required|min:3',
+            'nama_kaprodi' => 'required|min:3',
+            'photo_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:1024'
         ];
     }
 }

@@ -23,10 +23,10 @@ class StoreProdiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fakultas_id' => 'required',
-            'nama_prodi' => 'required',
-            'nama_kaprodi' => 'required',
-            'photo_kaprodi' => 'required|max:1024|mimetypes:image/*'
+            'fakultas_id' => 'required|exists:fakultas,id',
+            'nama_prodi' => 'required|min:3',
+            'nama_kaprodi' => 'required|min:3',
+            'photo_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:1024'
         ];
     }
 }
