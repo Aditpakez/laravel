@@ -608,19 +608,16 @@
             setTimeout(() => {
                 toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 400);
-            }, 3000);
+            }, 6000);
         }
 
         // Catch Laravel session flashes
-        @if(session('success'))
-            document.addEventListener('DOMContentLoaded', () => {
-                showToast("{{ session('success') }}", "success");
-            });
+        @if(session()->has('success'))
+            showToast("{{ session('success') }}", "success");
         @endif
-        @if(session('error'))
-            document.addEventListener('DOMContentLoaded', () => {
-                showToast("{{ session('error') }}", "error");
-            });
+        
+        @if(session()->has('error'))
+            showToast("{{ session('error') }}", "error");
         @endif
 
         // --- 2. Custom Delete Confirmation Interceptor ---

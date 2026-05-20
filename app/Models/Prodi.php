@@ -15,7 +15,7 @@ class Prodi extends Model
         'fakultas_id',
         'nama_prodi',
         'nama_kaprodi',
-        'photo_kaprodi'
+        'photo_profile_kaprodi'
     ];
 
     /**

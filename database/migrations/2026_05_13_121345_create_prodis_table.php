@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('prodi', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Fakultas::class);
+            $table->foreignIdFor(Fakultas::class)->constrained()->cascadeOnDelete();
             $table->string('nama_prodi');
             $table->string('nama_kaprodi');
-            $table->string('photo_kaprodi');
+            $table->string('photo_profile_kaprodi')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

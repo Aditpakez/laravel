@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prodi;
 use App\Models\Fakultas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdiController extends Controller
 {
@@ -35,15 +36,15 @@ class ProdiController extends Controller
             'fakultas_id' => 'required|exists:fakultas,id',
             'nama_prodi' => 'required|min:3',
             'nama_kaprodi' => 'required|min:3',
-            'photo_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:1024'
+            'photo_profile_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048'
         ]);
 
         $data = $request->only(['fakultas_id', 'nama_prodi', 'nama_kaprodi']);
 
-        if ($request->hasFile('photo_kaprodi')) {
-            $data['photo_kaprodi'] = $request->file('photo_kaprodi')->store('photos/kaprodi', 'public');
+        if ($request->hasFile('photo_profile_kaprodi')) {
+            $data['photo_profile_kaprodi'] = $request->file('photo_profile_kaprodi')->store('photos/kaprodi', 'public');
         } else {
-            $data['photo_kaprodi'] = '';
+            $data['photo_profile_kaprodi'] = null;
         }
 
         Prodi::create($data);
@@ -78,13 +79,17 @@ class ProdiController extends Controller
             'fakultas_id' => 'required|exists:fakultas,id',
             'nama_prodi' => 'required|min:3',
             'nama_kaprodi' => 'required|min:3',
-            'photo_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:1024'
+            'photo_profile_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048'
         ]);
 
         $data = $request->only(['fakultas_id', 'nama_prodi', 'nama_kaprodi']);
 
-        if ($request->hasFile('photo_kaprodi')) {
-            $data['photo_kaprodi'] = $request->file('photo_kaprodi')->store('photos/kaprodi', 'public');
+        if ($request->hasFile('photo_profile_kaprodi')) {
+            // Hapus foto lama jika ada
+            if ($prodi->photo_profile_kaprodi && Storage::disk('public')->exists($prodi->photo_profile_kaprodi)) {
+                Storage::disk('public')->delete($prodi->photo_profile_kaprodi);
+            }
+            $data['photo_profile_kaprodi'] = $request->file('photo_profile_kaprodi')->store('photos/kaprodi', 'public');
         }
 
         $prodi->update($data);
@@ -97,6 +102,11 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
+        // Hapus foto kaprodi jika ada
+        if ($prodi->photo_profile_kaprodi && Storage::disk('public')->exists($prodi->photo_profile_kaprodi)) {
+            Storage::disk('public')->delete($prodi->photo_profile_kaprodi);
+        }
+
         $prodi->delete();
         return redirect()->back()->with('success', 'Data prodi berhasil dihapus!');
     }

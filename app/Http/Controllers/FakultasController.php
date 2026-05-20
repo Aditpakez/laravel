@@ -26,17 +26,17 @@ class FakultasController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */ 
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'name_fakultas' => 'required|min:3',
-            'dekan' => 'required|min:3'
+            'nama_fakultas' => 'required|min:3',
+            'nama_dekan' => 'required|min:3'
         ]);
 
         Fakultas::create([
-            'name' => $request->name_fakultas,
-            'dekan' => $request->dekan
+            'nama_fakultas' => $request->nama_fakultas,
+            'nama_dekan' => $request->nama_dekan
         ]);
 
         return redirect('/fakultas')->with('success', 'Data fakultas berhasil ditambahkan!');
@@ -66,13 +66,13 @@ class FakultasController extends Controller
     public function update(Request $request, Fakultas $fakulta)
     {
         $request->validate([
-            'name_fakultas' => 'required|min:3',
-            'dekan' => 'required|min:3'
+            'nama_fakultas' => 'required|min:3',
+            'nama_dekan' => 'required|min:3'
         ]);
 
         $fakulta->update([
-            'name' => $request->name_fakultas,
-            'dekan' => $request->dekan
+            'nama_fakultas' => $request->nama_fakultas,
+            'nama_dekan' => $request->nama_dekan
         ]);
 
         return redirect('/fakultas')->with('success', 'Data fakultas berhasil diperbarui!');

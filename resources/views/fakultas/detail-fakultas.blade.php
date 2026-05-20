@@ -6,7 +6,7 @@
     <div style="max-width: 560px;">
         <div class="page-header">
             <div class="page-header-text">
-                <h1>{{ $fakulta->name }}</h1>
+                <h1>{{ $fakulta->nama_fakultas }}</h1>
                 <p>Detail informasi fakultas</p>
             </div>
             <a href="/fakultas/{{ $fakulta->id }}/edit" class="btn btn-secondary">
@@ -18,11 +18,11 @@
             <div class="card-body">
                 <div class="detail-row">
                     <div class="detail-label">Nama Fakultas</div>
-                    <div class="detail-value">{{ $fakulta->name }}</div>
+                    <div class="detail-value">{{ $fakulta->nama_fakultas }}</div>
                 </div>
                 <div class="detail-row">
                     <div class="detail-label">Nama Dekan</div>
-                    <div class="detail-value">{{ $fakulta->dekan }}</div>
+                    <div class="detail-value">{{ $fakulta->nama_dekan }}</div>
                 </div>
                 <div class="detail-row">
                     <div class="detail-label">Jumlah Prodi</div>

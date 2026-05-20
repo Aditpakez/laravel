@@ -9,8 +9,6 @@
         </a>
     </div>
 
-
-
     <div class="card">
         <div class="card-body flush">
             <table class="data-table">
@@ -18,7 +16,7 @@
                     <tr>
                         <th class="col-num">No</th>
                         <th>Nama Fakultas</th>
-                        <th>Dekan</th>
+                        <th>Nama Dekan</th>
                         <th class="col-actions">Aksi</th>
                     </tr>
                 </thead>
@@ -26,8 +24,8 @@
                     @forelse ($fakultas as $item)
                         <tr>
                             <td class="col-num">{{ $loop->iteration }}</td>
-                            <td style="font-weight: 500;">{{ $item->name }}</td>
-                            <td>{{ $item->dekan }}</td>
+                            <td style="font-weight: 500;">{{ $item->nama_fakultas }}</td>
+                            <td>{{ $item->nama_dekan }}</td>
                             <td class="col-actions">
                                 <div class="action-group">
                                     <a href="/fakultas/{{ $item->id }}" class="btn btn-secondary btn-sm" data-tooltip="Detail">
@@ -37,7 +35,7 @@
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="/fakultas/{{ $item->id }}" method="POST" 
-                                          onsubmit="return confirm('Hapus fakultas {{ $item->name }}?');" style="display:inline;">
+                                          onsubmit="return confirm('Hapus fakultas {{ $item->nama_fakultas }}?');" style="display:inline;">
                                         @csrf
                                         @method("DELETE")
                                         <button type="submit" class="btn btn-danger btn-sm" data-tooltip="Hapus">

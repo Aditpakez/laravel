@@ -18,8 +18,8 @@
             <div class="card-body">
                 {{-- Photo section --}}
                 <div style="display: flex; align-items: center; gap: 16px; padding-bottom: 20px; margin-bottom: 16px; border-bottom: 1px solid var(--border-light);">
-                    @if($prodi->photo_kaprodi)
-                        <img src="{{ asset('storage/' . $prodi->photo_kaprodi) }}" 
+                    @if($prodi->photo_profile_kaprodi)
+                        <img src="{{ asset('storage/' . $prodi->photo_profile_kaprodi) }}" 
                              alt="{{ $prodi->nama_kaprodi }}" 
                              class="avatar avatar-lg">
                     @else
@@ -40,7 +40,7 @@
                 <div class="detail-row">
                     <div class="detail-label">Fakultas</div>
                     <div class="detail-value">
-                        <span class="badge">{{ $prodi->fakultas->name ?? '—' }}</span>
+                        <span class="badge">{{ $prodi->fakultas->nama_fakultas ?? '—' }}</span>
                     </div>
                 </div>
                 <div class="detail-row">

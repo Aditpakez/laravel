@@ -25,13 +25,13 @@
                     <div class="form-group">
                         <label class="form-label">Nama Fakultas</label>
                         <input 
-                            name="name_fakultas"
+                            name="nama_fakultas"
                             type="text"
-                            class="form-input {{ $errors->has('name_fakultas') ? 'is-invalid' : '' }}"
-                            value="{{ old('name_fakultas') }}"
+                            class="form-input {{ $errors->has('nama_fakultas') ? 'is-invalid' : '' }}"
+                            value="{{ old('nama_fakultas') }}"
                             placeholder="cth. Fakultas Teknik"
                             autofocus>
-                        @error('name_fakultas')
+                        @error('nama_fakultas')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -39,12 +39,12 @@
                     <div class="form-group">
                         <label class="form-label">Nama Dekan</label>
                         <input 
-                            name="dekan"
+                            name="nama_dekan"
                             type="text"
-                            class="form-input {{ $errors->has('dekan') ? 'is-invalid' : '' }}"
-                            value="{{ old('dekan') }}"
+                            class="form-input {{ $errors->has('nama_dekan') ? 'is-invalid' : '' }}"
+                            value="{{ old('nama_dekan') }}"
                             placeholder="cth. Prof. Dr. Budi Santoso">
-                        @error('dekan')
+                        @error('nama_dekan')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
                     </div>

@@ -30,7 +30,7 @@
                             <option value="">Pilih fakultas</option>
                             @foreach ($fakultas as $item)
                                 <option value="{{ $item->id }}" {{ old('fakultas_id', $prodi->fakultas_id) == $item->id ? 'selected' : '' }}>
-                                    {{ $item->name }}
+                                    {{ $item->nama_fakultas }}
                                 </option>
                             @endforeach
                         </select>
@@ -65,21 +65,21 @@
 
                     <div class="form-group">
                         <label class="form-label">Foto Ketua Prodi</label>
-                        @if($prodi->photo_kaprodi)
+                        @if($prodi->photo_profile_kaprodi)
                             <div class="photo-preview" style="margin-bottom: 10px;">
-                                <img src="{{ asset('storage/' . $prodi->photo_kaprodi) }}" alt="{{ $prodi->nama_kaprodi }}">
+                                <img src="{{ asset('storage/' . $prodi->photo_profile_kaprodi) }}" alt="{{ $prodi->nama_kaprodi }}">
                                 <span>Foto saat ini</span>
                             </div>
                         @endif
                         <input 
-                            name="photo_kaprodi"
+                            name="photo_profile_kaprodi"
                             type="file"
                             accept="image/*"
                             class="form-file-input"
                             id="photoInput"
                             onchange="previewPhoto(this)">
-                        <div class="form-hint">Kosongkan jika tidak ingin mengubah foto.</div>
-                        @error('photo_kaprodi')
+                        <div class="form-hint">Kosongkan jika tidak ingin mengubah foto. Upload baru akan menghapus foto lama.</div>
+                        @error('photo_profile_kaprodi')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
                         <div id="photoPreview" style="display:none; margin-top: 10px;">

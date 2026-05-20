@@ -26,7 +26,7 @@ class StoreProdiRequest extends FormRequest
             'fakultas_id' => 'required|exists:fakultas,id',
             'nama_prodi' => 'required|min:3',
             'nama_kaprodi' => 'required|min:3',
-            'photo_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:1024'
+            'photo_profile_kaprodi' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048'
         ];
     }
 }

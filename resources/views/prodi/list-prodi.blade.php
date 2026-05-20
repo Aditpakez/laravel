@@ -9,8 +9,6 @@
         </a>
     </div>
 
-
-
     <div class="card">
         <div class="card-body flush">
             <table class="data-table">
@@ -29,12 +27,12 @@
                             <td class="col-num">{{ $loop->iteration }}</td>
                             <td style="font-weight: 500;">{{ $item->nama_prodi }}</td>
                             <td>
-                                <span class="badge">{{ $item->fakultas->name ?? '—' }}</span>
+                                <span class="badge">{{ $item->fakultas->nama_fakultas ?? '—' }}</span>
                             </td>
                             <td>
                                 <div class="cell-with-avatar">
-                                    @if($item->photo_kaprodi)
-                                        <img src="{{ asset('storage/' . $item->photo_kaprodi) }}" 
+                                    @if($item->photo_profile_kaprodi)
+                                        <img src="{{ asset('storage/' . $item->photo_profile_kaprodi) }}" 
                                              alt="{{ $item->nama_kaprodi }}" 
                                              class="avatar">
                                     @else

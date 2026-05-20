@@ -29,7 +29,7 @@
                             <option value="">Pilih fakultas</option>
                             @foreach ($fakultas as $item)
                                 <option value="{{ $item->id }}" {{ old('fakultas_id') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->name }}
+                                    {{ $item->nama_fakultas }}
                                 </option>
                             @endforeach
                         </select>
@@ -67,14 +67,14 @@
                     <div class="form-group">
                         <label class="form-label">Foto Ketua Prodi</label>
                         <input 
-                            name="photo_kaprodi"
+                            name="photo_profile_kaprodi"
                             type="file"
                             accept="image/*"
-                            class="form-file-input {{ $errors->has('photo_kaprodi') ? 'is-invalid' : '' }}"
+                            class="form-file-input {{ $errors->has('photo_profile_kaprodi') ? 'is-invalid' : '' }}"
                             id="photoInput"
                             onchange="previewPhoto(this)">
-                        <div class="form-hint">JPG, PNG, GIF, atau WebP. Maks 1MB.</div>
-                        @error('photo_kaprodi')
+                        <div class="form-hint">JPG, PNG, GIF, atau WebP. Maks 2MB.</div>
+                        @error('photo_profile_kaprodi')
                             <div class="form-error">{{ $message }}</div>
                         @enderror
                         <div id="photoPreview" style="display:none; margin-top: 10px;">
