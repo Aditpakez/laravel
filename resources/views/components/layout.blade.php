@@ -558,6 +558,7 @@
             <button class="mobile-toggle" onclick="document.getElementById('mainNav').classList.toggle('show')">
                 <i class="bi bi-list"></i>
             </button>
+            <form action="/logout" method="post"> <button type="submit" class="btn btn-danger">logout</button> </form>
         </div>
     </header>
 
